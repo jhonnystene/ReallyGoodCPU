@@ -1,0 +1,74 @@
+=== Really Good CPU ===
+A CPU architecture I made in half an hour. It has 4 registers, and it
+can add, subtract, multiply, and divide, as well as XOR, OR, and AND.
+It has 2KiB of RAM, 2KiB of ROM, and 512 bytes for the stack by default.
+Every instruction takes up four bytes:
+<instruction byte> <argument 1> <argument 2> <argument 3>
+
+Registers:
+	0x00 - General purpose register 0
+	0x01 - General purpose register 1
+	0x02 - General purpose register 2
+	0x03 - General purpose register 3
+
+Instructions:
+	0x00 (NOP):
+		Do nothing.
+	0x01 (MOV): 
+		Set the value in the register to something.
+		Arguments:
+			1 - Which register
+			2 - Value
+			3 - Is the value an actual value, or a register number? (0x00 for value, anything else for register)
+	0x02 (ADD):
+		Add a value to a register.
+		Arguments:
+			See MOV.
+	0x03 (SUB):
+		Subtract a value from a register.
+		Arguments:
+			See MOV.
+	0x04 (MUL):
+		Multiply a register by a value.
+		Arguments:
+			See MOV.
+	0x05 (DIV):
+		Divide a register by a value.
+		Arguments:
+			See MOV.
+	0x06 (XOR):
+		XOR a register with a value.
+		Arguments:
+			See MOV.
+	0x07 (OR):
+		OR a register with a value.
+		Arguments:
+			See MOV.
+	0x08 (AND):
+		AND a register with a value.
+		Arguments:
+			See MOV.
+	0x09 (HLT):
+		Stop executing, but keep the CPU running.
+	0x0A (PUSH):
+		Push a value onto the stack.
+		Arguments:
+			1 - Value
+			2 - Whether or not value should be treated as a register
+			3 - Empty
+	0x0B (POP):
+		Pop a value from the stack.
+		Arguments:
+			1 - Register to pop into
+			2 - Empty
+			3 - Empty
+	0x0C (STO):
+		Store a value in memory.
+		Arguments:
+			Same as MOV, but argument 1 is a memory address.
+	0x0D (GET):
+		Get a value from memory.
+		Arguments:
+			1 - Address
+			2 - Register
+			3 - Empty			
